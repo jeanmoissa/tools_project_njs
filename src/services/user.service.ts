@@ -12,10 +12,10 @@ export function getUserById(id: number) {
   return prisma.user.findUnique({ where: { id } });
 }
 
-export function updateUser(id: number, name: string, email: string) {
+export async function updateUser(id: number, data: { name?: string; email?: string }) {
   return prisma.user.update({
-    where: { id },
-    data: { name, email },
+    where: { id }, // <== aqui espera um número válido
+    data,
   });
 }
 

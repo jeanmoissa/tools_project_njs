@@ -24,17 +24,28 @@ export async function getUserById(req: Request, res: Response): Promise<void> {
 
 export async function updateUser(req: Request, res: Response): Promise<void> {
   const id = Number(req.params.id);
+
+  if (isNaN(id)) {
+    res.status(400).json({ message: 'Invalid ID' });
+    return;
+  }
+
   const { name, email } = req.body;
 
+  const dataToUpdate: { name?: string; email?: string } = {};
+  if (name !== undefined) dataToUpdate.name = name;
+  if (email !== undefined) dataToUpdate.email = email;
+
+  if (Object.keys(dataToUpdate).length === 0) {
+    res.status(400).json({ message: 'No valid fields provided for update' });
+    return;
+  }
+
   try {
-    const user = await userService.updateUser(id, name, email);
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
-    } else {
-      res.json(user);
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Error updating user', error });
+    const user = await userService.updateUser(id, dataToUpdate);
+    res.json(user);
+  } catch (error: any) {
+    res.status(500).json({ message: 'Error updating user', error: error.message || error });
   }
 }
 
