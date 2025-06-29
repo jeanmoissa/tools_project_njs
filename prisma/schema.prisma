@@ -23,12 +23,15 @@ model Category {
 }
 
 model Tool {
-  id         Int      @id @default(autoincrement())
-  name       String
-  value      Float
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  stock      Stock[]
+  id          Int      @id @default(autoincrement())
+  name        String
+  value       Float
+  brand       String?
+  image       String?
+  description String?
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  stock       Stock[]
 }
 
 model Stock {
