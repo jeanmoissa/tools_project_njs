@@ -19,7 +19,7 @@ Este projeto é uma API RESTful criada com **Node.js + TypeScript + Express + Pr
 ---
 
 ## 📦 Estrutura de Diretórios
-
+```bash
 src/
 ├── controllers/
 ├── routes/
@@ -104,7 +104,7 @@ Campos: toolId, quantity, date_entrance, date_exit
 **GET /categories** – Lista categorias
 **PUT /categories/:id** – Atualiza categoria
 **DELETE /categories/:id** – Deleta categoria
-
+```
 ## 📌 Requisitos
 Node.js 18+
 Docker e Docker Compose
