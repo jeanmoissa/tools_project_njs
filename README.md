@@ -30,80 +30,85 @@ src/
 ├── utils/
 ├── app.ts
 └── server.ts
-
+```
 ## ⚙️ Como Executar o Projeto
 
 ### 1. Clone o repositório
-
+```bash
 git clone https://github.com/seu-usuario/tools-api.git
 cd tools-api
-
+```
 ### 2. Instale as dependências
-
+```bash
 npm install
-
+```
 ### 3. Configure as variáveis de ambiente
-
+```bash
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/toolsdb
 JWT_SECRET=sua_chave_secreta
 RESEND_API_KEY=sua_api_key_resend
 RESEND_EMAIL_FROM=seu@email.com
 FRONTEND_URL=http://localhost:5173
-
+```
 ### 4. Suba o banco de dados com Docker
-
+```bash
 docker-compose up -d
-
+```
 ### 5. Configure o Prisma ORM
-
+```bash
 npx prisma generate
 npx prisma migrate dev --name init
-
+```
 ### 6. Inicie a aplicação
-
+```bash
 npm run dev
 
 A API estará rodando em:
 📍 http://localhost:3333
-
+```
 
 ## 📦 Endpoints da API
 
 ### 🔐 Autenticação
-**POST /auth/login** – Realiza login e retorna token JWT
-**POST /auth/forgot-password** – Envia link de recuperação via e-mail
-**POST /auth/reset-password** – Altera senha com token enviado
-
+```bash
+POST /auth/login – Realiza login e retorna token JWT
+POST /auth/forgot-password – Envia link de recuperação via e-mail
+POST /auth/reset-password – Altera senha com token enviado
+```
 ### 👤 Usuários
-**POST /users** – Cria novo usuário
-**GET /users** – Lista todos os usuários
-**GET /users/:id** – Retorna usuário por ID
-**PUT /users/:id** – Atualiza usuário
-**DELETE /users/:id** – Deleta usuário
-
+```bash
+POST /users – Cria novo usuário
+GET /users – Lista todos os usuários
+GET /users/:id – Retorna usuário por ID
+PUT /users/:id – Atualiza usuário
+DELETE /users/:id – Deleta usuário
+```
 ### 🛠️ Ferramentas
-**POST /tools** – Cria ferramenta
+```bash
+POST /tools – Cria ferramenta
 Campos: name, value, categoryId, brand, image, description
 
-**GET /tools** – Lista todas as ferramentas
-**GET /tools/:id** – Retorna uma ferramenta
-**PUT /tools/:id** – Atualiza ferramenta
-**DELETE /tools/:id** – Remove ferramenta
-
+GET /tools – Lista todas as ferramentas
+GET /tools/:id – Retorna uma ferramenta
+PUT /tools/:id – Atualiza ferramenta
+DELETE /tools/:id – Remove ferramenta
+```
 ### 📦 Estoque
-**POST /stock** – Registra movimentação de estoque
+```bash
+POST /stock – Registra movimentação de estoque
 Campos: toolId, quantity, date_entrance, date_exit
 
-**GET /stock** – Lista todas movimentações
-**GET /stock/:id** – Detalhes por ID
-**PUT /stock/:id** – Atualiza movimentação
-**DELETE /stock/:id** – Remove movimentação
-
+GET /stock – Lista todas movimentações
+GET /stock/:id – Detalhes por ID
+PUT /stock/:id – Atualiza movimentação
+DELETE /stock/:id – Remove movimentação
+```
 ### 🗂️ Categorias
-**POST /categories** – Cria nova categoria (type)
-**GET /categories** – Lista categorias
-**PUT /categories/:id** – Atualiza categoria
-**DELETE /categories/:id** – Deleta categoria
+```bash
+POST /categories – Cria nova categoria (type)
+GET /categories – Lista categorias
+PUT /categories/:id – Atualiza categoria
+DELETE /categories/:id – Deleta categoria
 ```
 ## 📌 Requisitos
 Node.js 18+
